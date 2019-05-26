@@ -5,17 +5,44 @@
 </head>
 <body>
 
+	<!-- OVERALL SEARCH ON LANDING -->
+	<h1>NPS VIRTUAL KIOSK</h1>
+	<h2>What can we help you find?</h2>
+	<p>
+		Type keywords into the search bar below or start by narrowing your search in the menu below.
+	</p>
+
+
+	<!-- SEARCH BAR -->
+	<form>
+		<input type="text" name="keywords">
+		<input type="submit" value="GO"> <!-- SEE IF CAN SET ICON AS VALUE -->
+	</form>
+
 	<!-- MENU -->
-	
+	<table>
+		<tr>
+			<button>Locations</button>
+			<button>Events</button>
+		</tr>
+		<tr>
+			<button>News</button>
+			<button>Articles</button>
+		</tr>
+		<tr>
+			<button>Education</button>
+		</tr>
+	</table>
 
 
 	<!-- ALERTS BAR, MAKE SURE HAS FIXED POSIT -->
 	<div class="alertBar">
-		<marquee>
-			<p>
+		<h1>Alerts</h1>
+		<p>
+			<marquee>
 				<!-- BRING IN JSON ALERTS -->
-			</p>
-		</marquee>
+			</marquee>
+		</p>
 	</div>
 
 </body>
