@@ -1,48 +1,61 @@
 <!DOCTYPE html>
 <html>
+<!-- CSS FILE!!! -->
+<style>
+	@import url("main.css")
+</style>
 <head>
 	<title>NPS Virtual Kiosk</title>
 </head>
+
 <body>
 
 	<!-- OVERALL SEARCH ON LANDING -->
-	<h1>NPS VIRTUAL KIOSK</h1>
-	<h2>What can we help you find?</h2>
-	<p>
+	<h1 style = "text-align: center; font-size: 48px;">NPS VIRTUAL KIOSK</h1>
+	<h2 style="text-align: center; font-size: 30px;">What can we help you find?</h2>
+	<p style="text-align: center; font-style: italic;">
 		Type keywords into the search bar below or start by narrowing your search in the menu below.
 	</p>
 
 
 	<!-- SEARCH BAR -->
-	<form>
+	<form style="text-align: center;">
 		<input type="text" name="keywords">
 		<input type="submit" value="GO"> <!-- SEE IF CAN SET ICON AS VALUE -->
 	</form>
 
 	<!-- MENU -->
-	<table>
-		<tr>
-			<button>Locations</button>
-			<button>Events</button>
+	<table style = "width:100%; margin-top:20px;">
+		<tr class="landingMenu">
+			<td class="menuOption"><button class="landingButton">Locations</button></td>
+			<td class="menuOption"><button class="landingButton">Events</button></td>
 		</tr>
 		<tr>
-			<button>News</button>
-			<button>Articles</button>
+			<td class="menuOption"><button class="landingButton">News</button></td>
+			<td class="menuOption"><button class="landingButton">Articles</button></td>
 		</tr>
 		<tr>
-			<button>Education</button>
+			<td class="menuOption"><button class="landingButton">Education</button></td>
 		</tr>
 	</table>
 
 
 	<!-- ALERTS BAR, MAKE SURE HAS FIXED POSIT -->
-	<div class="alertBar">
-		<h1>Alerts</h1>
-		<p>
-			<marquee>
-				<!-- BRING IN JSON ALERTS -->
-			</marquee>
-		</p>
+	<div style="position: fixed; width: 100%;">
+		<table style="width: 100%;">
+			<tr>
+				<td style="width: 10%;">
+					<h1>Alerts</h1>
+				</td>
+				<td>
+					<p>
+						<marquee>
+							Park in SF is closed.
+						</marquee>
+					</p>
+				</td>
+			</tr>
+		</table>
 	</div>
 
 </body>

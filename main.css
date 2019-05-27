@@ -3,3 +3,33 @@ body {
 	font-family: Arial;
 	font-size: 18px;
 }
+
+/* LANDING PAGE */
+.landingMenu {
+	width: 100%;
+	margin-top: 20px;
+
+}
+
+.menuOption {
+	width: 50%;
+}
+
+.landingButton {
+	text-align: center;
+	display: block;
+	width: 100%;
+	border-width: 4px;
+	border-radius: 5px;
+	border-color: black;
+	padding: 10px;
+}
+
+/* SCROLLING ALERTS BAR */
+.alertsBar {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+}
+
