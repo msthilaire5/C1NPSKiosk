@@ -1,8 +1,28 @@
-body {
-	background-image: ;
+body, html {
 	font-family: Arial;
 	font-size: 18px;
+	height: 100%;
 }
+
+.bgimage {
+	background-image: url(BackgroundPics/CanoeForestBackground.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+
+	filter: blur(8px);
+	-webkit-filter: blur(8px);
+
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: block;
+	z-index: -1;
+}
+
+
 
 /* LANDING PAGE */
 .landingMenu {
@@ -13,6 +33,8 @@ body {
 
 .menuOption {
 	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .landingButton {
