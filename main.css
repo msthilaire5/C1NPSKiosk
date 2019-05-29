@@ -60,14 +60,3 @@ body, html {
 	height: 14px;
 	font-size: 14px;
 }
-
-.alertsHeaderBG {
-	opacity: 0.8;
-	background-color: green;
-	display: block;
-
-	height: 100%;
-	z-index: 1;
-
-}
-
