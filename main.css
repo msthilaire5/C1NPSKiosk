@@ -1,5 +1,5 @@
 body, html {
-	font-family: Arial;
+	font-family: Calibri;
 	font-size: 18px;
 	height: 100%;
 }
@@ -26,6 +26,7 @@ body, html {
 .landingMenu {
 	width: 100%;
 	margin-top: 20px;
+	margin-bottom: 50px;
 
 }
 
@@ -38,12 +39,13 @@ body, html {
 .landingButton {
 	background-color: gray;
 	font-size: 18px;
+	font-family: Calibri;
 
 	text-align: center;
 	display: block;
 	width: 100%;
-	height: 100px;
-	border-width: 4px;
+	height: 75px;
+	border-width: 2px;
 	border-radius: 5px;
 	border-color: black;
 	padding: 10px;
@@ -51,12 +53,25 @@ body, html {
 
 /* SCROLLING ALERTS BAR */
 .alertsBar {
+	background-color: rgb(128,43,0);
 	position: fixed;
-	float: left;
-	bottom: 43px;
+	bottom: 0px;
 	left: 0;
 
 	width: 100%;
-	height: 14px;
+
 	font-size: 14px;
+	line-height: 14px;
+	color: black;
+	box-shadow: 0px -1px 2px 1px black;
+}
+
+.alertsScrolling {
+	width: 95%;
+
+	position: relative;
+	left: -10px;
+	z-index: -1;
+
+	border-radius: 0px 10px 10px 0px;
 }
