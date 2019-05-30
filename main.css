@@ -1,7 +1,10 @@
 body, html {
-	font-family: Calibri;
+	font-family: Helvetica;
 	font-size: 18px;
 	height: 100%;
+
+	padding: 0px;
+	margin: 0px;
 }
 
 .bgimage {
@@ -22,38 +25,9 @@ body, html {
 	z-index: -1;
 }
 
-/* LANDING PAGE */
-.landingMenu {
-	width: 100%;
-	margin-top: 20px;
-	margin-bottom: 50px;
-
-}
-
-.menuOption {
-	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.landingButton {
-	background-color: gray;
-	font-size: 18px;
-	font-family: Calibri;
-
-	text-align: center;
-	display: block;
-	width: 100%;
-	height: 75px;
-	border-width: 2px;
-	border-radius: 5px;
-	border-color: black;
-	padding: 10px;
-}
-
 /* SCROLLING ALERTS BAR */
 .alertsBar {
-	background-color: rgb(128,43,0);
+	background-color: gray; /* #ec8443 */
 	position: fixed;
 	bottom: 0px;
 	left: 0;
@@ -63,7 +37,7 @@ body, html {
 	font-size: 14px;
 	line-height: 14px;
 	color: black;
-	box-shadow: 0px -1px 2px 1px black;
+	box-shadow: 0px -1px 5px 1px black;
 }
 
 .alertsScrolling {
@@ -75,3 +49,137 @@ body, html {
 
 	border-radius: 0px 10px 10px 0px;
 }
+
+
+/* LANDING PAGE */
+/* Search Bar */
+.searchButton {
+	height: 35px;
+	width: 35px;
+
+	font-size: 24px;
+	font-family: Helvetica;
+
+	text-align: center;
+	border-width: 2px;
+	border-radius: 5px;
+	border-color: black;
+	border-style: outset;
+}
+
+.landingMenu {
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+.menuOption {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.landingButton {
+	background-color: gray;
+	font-size: 18px;
+	font-family: Helvetica;
+
+	text-align: center;
+	display: block;
+	width: 100%;
+	height: 75px;
+	border-width: 2px;
+	border-radius: 5px;
+	border-color: black;
+	border-style: outset;
+	padding: 10px;
+}
+
+
+/* NON-LANDING PAGES */
+/* NAVIGATION BAR */
+.typNavBar {
+	background-color: gray;
+	display: block;
+	margin-bottom: 20px;
+
+	box-shadow: 0px 1px 5px 1px black;
+
+	height: 50px;
+	width: 100%;
+
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+.menuLogo {
+	width: 30px; 
+	height: 38px; 
+	margin: 5px;
+
+	display: inline; 
+}
+
+.menuTitle {
+	font-size: 30px; 
+	display: inline;
+	color: white;
+
+	padding: 5px;
+
+	height: 100%;
+	position: relative;
+	top: -12px;
+}
+
+.navList {
+	list-style-type: none;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+.navItem {
+	display: inline-block;
+	padding: 0px;
+	margin: 0px;
+}
+
+.navLink {
+	display: inline-block;
+	height: 50px;
+
+	line-height: 50px;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+
+	padding: 0px 15px;
+	margin: 0px;
+}
+
+.navLink:hover:not(active) {
+	background-color: black;
+}
+
+.active {
+	background-color: #333;
+	color: white;
+}
+
+.pageContent {
+	margin: 70px 15px;
+
+	background-color: gray;
+
+	height: auto;
+}
+
+
+
