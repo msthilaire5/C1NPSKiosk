@@ -1,10 +1,8 @@
 body, html {
 	font-family: Helvetica;
 	font-size: 18px;
+	color: black;
 	height: 100%;
-
-	padding: 0px;
-	margin: 0px;
 }
 
 .bgimage {
@@ -27,7 +25,7 @@ body, html {
 
 /* SCROLLING ALERTS BAR */
 .alertsBar {
-	background-color: gray; /* #ec8443 */
+	background-color: #b3b3b3;
 	position: fixed;
 	bottom: 0px;
 	left: 0;
@@ -38,16 +36,19 @@ body, html {
 	line-height: 14px;
 	color: black;
 	box-shadow: 0px -1px 5px 1px black;
+	border-collapse: collapse; 
+}
+
+.alertsHeader {
+	width: 10%;
+	min-width: 55px;
+
+	text-align: center;
+	background-color: #336600;
 }
 
 .alertsScrolling {
 	width: 95%;
-
-	position: relative;
-	left: -10px;
-	z-index: -1;
-
-	border-radius: 0px 10px 10px 0px;
 }
 
 
@@ -80,7 +81,7 @@ body, html {
 }
 
 .landingButton {
-	background-color: gray;
+	background-color: #b3b3b3;
 	font-size: 18px;
 	font-family: Helvetica;
 
@@ -99,7 +100,7 @@ body, html {
 /* NON-LANDING PAGES */
 /* NAVIGATION BAR */
 .typNavBar {
-	background-color: gray;
+	background-color: #b3b3b3;
 	display: block;
 	margin-bottom: 20px;
 
@@ -125,7 +126,6 @@ body, html {
 .menuTitle {
 	font-size: 30px; 
 	display: inline;
-	color: white;
 
 	padding: 5px;
 
@@ -156,27 +156,33 @@ body, html {
 	height: 50px;
 
 	line-height: 50px;
-	color: white;
 	text-align: center;
 	text-decoration: none;
+	color: black;
 
 	padding: 0px 15px;
 	margin: 0px;
 }
 
 .navLink:hover:not(active) {
-	background-color: black;
-}
-
-.active {
 	background-color: #333;
 	color: white;
 }
 
+.active {
+	background-color: black;
+	color: white;
+}
+
+/* MAIN PAGE CONTENT */
 .pageContent {
 	margin: 70px 15px;
 
-	background-color: gray;
+	background-color: #b3b3b3;
+	border-radius: 20px;
+	box-shadow: 1px 1px 5px 1px black;
+
+	padding: 20px;
 
 	height: auto;
 }

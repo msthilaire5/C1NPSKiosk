@@ -5,7 +5,7 @@
 	@import url("main.css")
 </style>
 <head>
-	<title>NPS Virtual Kiosk</title>
+	<title>Events | NPS Virtual Kiosk</title>
 	<!-- Search button icon -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -16,54 +16,53 @@
 
 	<div class="content">
 
-		<!-- LOGO & TITLE -->
-		<table style="width: auto; height: auto; margin-left: auto; margin-right: auto; margin-top: 30px;">
-			<tr>
-				<td><img src="BackgroundPics/NPSLogo.png" style="width: 200px; height: 200px;"></img></td>
-				<td><h1 style = "text-align: center; font-size: 48px;">NPS VIRTUAL KIOSK</h1></td>
-			</tr>
-		</table>
-		
+		<!-- NAVBAR!!! -->
+		<div class="typNavBar">
+			<img src="BackgroundPics/NPSLogo.png" class="menuLogo"></img>
+			<h1 class="menuTitle">NPS VIRTUAL KIOSK</h1>
 
-		<!-- OVERALL SEARCH ON LANDING -->
-		<h2 style="text-align: center; font-size: 30px;">What can we help you find?</h2>
-		<p style="text-align: center; font-style: italic;">
-			Type keywords into the search bar below or start by narrowing your search in the menu below.
-		</p>
+			<!-- MENU -->
+			<ul class="navList">
+				<li class="navItem"><a href="index.html" class="navLink">Home</a></li>
+				<li class="navItem"><a href="locations.html" class="navLink">Locations</a></li>
+				<li class="navItem"><a href="events.html" class="navLink active" >Events</a></li>
+				<li class="navItem"><a href="news.html" class="navLink">News</a></li>
+				<li class="navItem"><a href="articles.html" class="navLink">Articles</a></li>
+				<li class="navItem"><a href="education.html" class="navLink">Education</a></li>
+			</ul>
+		</div>
+
+		<!-- PAGE CONTENT -->
+		<div class="pageContent">
+
+			<h1>Events</h1>
+			<hr />
+
+			<!-- OVERALL SEARCH ON LANDING -->
+			<h2 style="text-align: center; font-size: 30px;">What can we help you find?</h2>
+			<p style="text-align: center; font-style: italic;">
+				Type keywords into the search bar below or start by narrowing your search in the menu below.
+			</p>
 
 
-		<!-- SEARCH BAR -->
-		<form style="text-align: center;">
-			<input type="text" name="keywords" style="width: 50%; height: 35px;">
-			<button type="submit" class="searchButton">
-				<i class="fa fa-search"></i>
-			</button><!-- SEE IF CAN SET ICON AS VALUE -->
-		</form>
+			<!-- SEARCH BAR -->
+			<form style="text-align: center;">
+				<input type="text" name="keywords" style="width: 50%; height: 35px;">
+				<button type="submit" class="searchButton">
+					<i class="fa fa-search"></i>
+				</button><!-- SEE IF CAN SET ICON AS VALUE -->
+			</form>
+		</div>
 
-		<!-- MENU -->
-		<table class="landingMenu">
-			<tr>
-				<td class="menuOption"><button class="landingButton">Locations</button></td>
-				<td class="menuOption"><button class="landingButton">Events</button></td>
-			</tr>
-			<tr>
-				<td class="menuOption"><button class="landingButton">News</button></td>
-				<td class="menuOption"><button class="landingButton">Articles</button></td>
-			</tr>
-			<tr>
-				<td><button class="landingButton">Education</button></td>
-			</tr>
-		</table>
-
-		<!-- ALERTS BAR, MAKE SURE HAS FIXED POSIT -->
-		<div class="alertsBar">
-			<table style="width: 100%; border-collapse: collapse;">
+		<!-- ALERTS BAR -->
+		<div >
+			<table class="alertsBar">
 				<tr>
-					<td style="width: 10%; min-width: 55px; text-align: center; background-color: #336600; border-radius: 0px 10px 10px 0px; box-shadow: 1px 0px 8px 2px black">
-						<h1 style="font-size: 14px; z-index: 2;">ALERTS</h1>
+					<td class="alertsHeader">
+						<h1 style="font-size: 14px;">ALERTS</h1>
 					</td>
 					<td class="alertsScrolling">
-						<p style="height: 15px;">
+						<p>
 							<marquee>
 								Park in SF is closed.
 							</marquee>
