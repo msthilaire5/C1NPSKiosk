@@ -3,7 +3,7 @@
 	locationResults.js -- This file's code implements display of park/visitor center/campground locations!
 */
 
-const API_KEY = "k8aznKvAdbVkBiEUBIuYA7h4Aq1z8154urrJZLD8";
+const API_KEY = "";
 
 const locURL = "https://developer.nps.gov/api/v1/parks?api_key=" + API_KEY ;
 
