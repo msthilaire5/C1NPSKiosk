@@ -10,6 +10,12 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- JQUERY "IMPORT" -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<!-- EXTERNAL JS FILE -->
+	<script src="searchResults.js"></script>
+	<!-- For loading results -->
+	<script type="text/javascript">
+		window.onload = dispLocRes;
+	</script>
 </head>
 
 <body>
@@ -59,9 +65,8 @@
 			<hr />
 
 			<!-- SEARCH RESULTS -->
-			<div id="locationResults"></div>
-			<!-- EXTERNAL JS FILE -->
-			<script src="locationResults.js"></script>
+			<div id="locationResults">Loading park locations...</div>
+			
 
 		</div>
 
