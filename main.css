@@ -187,5 +187,24 @@ body, html {
 	height: auto;
 }
 
+/* BOX FOR EACH RESULT */
+.resBox {
+	width: 33%;
+	height: auto;
+
+	display: inline-grid;
+	text-align: center;
+}
+
+.resBoxImg {
+	width: 200px;
+	height: auto;
+}
+
+.resLink {
+	color: black;
+	text-decoration: underline;
+}
+
 
 
