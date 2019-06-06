@@ -188,11 +188,33 @@ body, html {
 
 /* BOX FOR EACH RESULT */
 .resBox {
-	width: 33%;
+	width: 30%;
 	height: auto;
 
 	display: inline-grid;
 	text-align: center;
+	background-color: white;
+	margin: 10px;
+	border-radius: 20px;
+}
+
+.resBox:hover {
+	box-shadow: 1px 1px 5px 1px black;
+}
+
+.resBox > h3 {
+	color: white;
+	font-size: 24px;
+	background-color: black;
+	margin: 0px;
+	padding: 10px;
+	border-radius: 20px 20px 0px 0px;
+}
+
+.resBox > p {
+	margin: 0px;
+	padding: 10px;
+	border-radius: 0px 0px 20px 20px;
 }
 
 .resBoxImg {
@@ -201,7 +223,7 @@ body, html {
 }
 
 .resLink {
-	color: black;
+	color: white;
 	text-decoration: underline;
 }
 
