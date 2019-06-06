@@ -60,10 +60,29 @@
 					<i class="fa fa-search"></i>
 				</button><!-- SEE IF CAN SET ICON AS VALUE -->
 			</form>
-			<hr />
+
+			<div class="resNavBar">
+				<ul class="resNavList">
+					<li class="resNavItem">
+						Location Type
+						<span style="padding: 5px;">&#9662</span>
+						<div class="resDD">
+							<div>Parks</div>
+							<div>Visitor Centers</div>
+							<div>Campgrounds</div>
+						</div>
+					</li>
+					<li class="resNavItem">
+						Filter Methods
+						<span style="padding: 5px;">&#9662</span>
+					</li>
+				</ul>
+			</div>
 
 			<!-- SEARCH RESULTS -->
 			<div id="locationResults">Loading park locations...</div>
+			<div id="vcResults" style="display: none;">Loading visitor centers...</div>
+			<div id="cgResults" style="display: none;">Loading campgrounds...</div>
 			
 
 		</div>

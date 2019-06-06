@@ -191,18 +191,29 @@ body, html {
 	width: 30%;
 	height: auto;
 
+	word-break: break-word;
+	hyphens: auto;
+	-webkit-hyphens: auto;
+ 	-ms-hyphens: auto;
 	display: inline-grid;
 	text-align: center;
 	background-color: white;
 	margin: 10px;
+
 	border-radius: 20px;
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
 }
 
+/* Get shadow on hover */
 .resBox:hover {
 	box-shadow: 1px 1px 5px 1px black;
 }
 
 .resBox > h3 {
+	/* word-break: break-word; */
+
 	color: white;
 	font-size: 24px;
 	background-color: black;
@@ -212,6 +223,8 @@ body, html {
 }
 
 .resBox > p {
+	width: contain;
+
 	margin: 0px;
 	padding: 10px;
 	border-radius: 0px 0px 20px 20px;
@@ -225,6 +238,61 @@ body, html {
 .resLink {
 	color: white;
 	text-decoration: underline;
+}
+
+/* Differentiating within section types, e.g. b/w parks, visitor centers, and campgrounds. */
+.resNavBar {
+	background-color: black;
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 20px;
+
+	height: 50px;
+	width: 100%;
+}
+
+.resNavList {
+	height: 100%;
+
+	color: white;
+	list-style-type: none;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+}
+
+.resNavItem {
+	display: inline-block;
+	padding: 15px;
+	margin: 0px;
+}
+
+.resNavItem:hover {
+	background-color: #333;
+	cursor: pointer;
+}
+
+/* Drop-down for locat/news/education content types!! */
+.resDD {
+	display: none;
+	position: absolute;
+	background-color: #333;
+	width: inherit;
+	z-index: 3;
+}
+
+.resDD:hover .resDD > div {
+	display: block;
+}
+
+.resDD > div {
+	color: white;
+	padding: 15px;
+	display: block;
+}
+
+.resDD:hover {
+	background-color: gray;
 }
 
 
