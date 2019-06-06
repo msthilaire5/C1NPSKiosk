@@ -10,6 +10,12 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- JQUERY "IMPORT" -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<!-- EXTERNAL JS FILE -->
+	<script src="searchResults.js"></script>
+	<!-- For loading results -->
+	<script type="text/javascript">
+		window.onload = dispEventRes;
+	</script>
 </head>
 
 <body>
@@ -29,7 +35,6 @@
 				<li class="navItem"><a href="locations.html" class="navLink">Locations</a></li>
 				<li class="navItem"><a href="events.html" class="navLink active" >Events</a></li>
 				<li class="navItem"><a href="news.html" class="navLink">News</a></li>
-				<li class="navItem"><a href="articles.html" class="navLink">Articles</a></li>
 				<li class="navItem"><a href="education.html" class="navLink">Education</a></li>
 			</ul>
 		</div>
@@ -43,7 +48,7 @@
 			<!-- OVERALL SEARCH ON LANDING -->
 			<h2 style="text-align: center; font-size: 30px;">What can we help you find?</h2>
 			<p style="text-align: center; font-style: italic;">
-				Type keywords into the search bar below or start by narrowing your search in the menu below.
+				Type keywords into the search bar below or search the listing below.
 			</p>
 
 
@@ -54,6 +59,11 @@
 					<i class="fa fa-search"></i>
 				</button><!-- SEE IF CAN SET ICON AS VALUE -->
 			</form>
+			<hr />
+
+			<!-- SEARCH RESULTS -->
+			<div id="eventResults">Loading events...</div>
+
 		</div>
 
 		<!-- ALERTS BAR -->
