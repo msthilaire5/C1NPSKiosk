@@ -5,9 +5,11 @@
 
 const API_KEY = "";
 
+/* SHOWING PARKS RESULTS */
 function dispLocRes() {
 
 	const locURL = "https://developer.nps.gov/api/v1/parks?api_key=" + API_KEY ;
+	query = "";
 
 	$.getJSON(locURL, function(data) {
 		// div displaying results
@@ -48,6 +50,87 @@ function dispLocRes() {
 	return;
 }
 
+// Visitor Centers.
+function dispVCRes(pTitle, pCode, query) {
+
+	const vcURL = "https://developer.nps.gov/api/v1/visitorcenters?api_key=" + API_KEY + "&parkCode=" + pCode;
+
+	$.getJSON(vcURL, function(data) {
+		// div displaying results
+		var vcDisplay = $("#vcResults");
+		// Remove "Loading results..." filler.
+		// vcDisplay.empty();
+
+		// List of all parks
+		var vcList = data.data;
+
+		// Populate with name header and state locat for each park.
+		for(vcIndex = 0; vcIndex < vcList.length; vcIndex++) {
+			const vc = vcList[vcIndex]; // Select-a-VC!
+			var resBox = $("<div class='resBox'></div>"); // Box it!
+
+			/* 
+			// URL for filling template.
+			const pCode = park.parkCode;
+			const templateUrl = "park.html?parkCode=" + pCode;
+			*/
+
+			// const pLink = $("<a class='resLink' href=" + templateUrl + "></a>").text(park.fullName);
+			const vcTitle = $("<h3></h3>").text(vc.name);
+			const vcPark = $("<p></p>").text(pTitle);
+
+
+			resBox.append(vcTitle);
+			resBox.append(vcPark);
+			vcDisplay.append(resBox);
+		}
+	});
+
+	return;
+}
+
+// Campgrounds.
+function dispCGRes(pTitle, pCode, query) {
+
+	const cgURL = "https://developer.nps.gov/api/v1/campgrounds?api_key=" + API_KEY + "&parkCode=" + pCode;
+
+	$.getJSON(cgURL, function(data) {
+		// div displaying results
+		var cgDisplay = $("#cgResults");
+		// Remove "Loading results..." filler.
+		// cgDisplay.empty();
+
+		// List of all parks
+		var cgList = data.data;
+
+		// Populate with name header and state locat for each park.
+		for(cgIndex = 0; cgIndex < cgList.length; cgIndex++) {
+			const cg = cgList[cgIndex]; // Select-a-VC!
+			var resBox = $("<div class='resBox'></div>"); // Box it!
+
+			/* 
+			// URL for filling template.
+			const pCode = park.parkCode;
+			const templateUrl = "park.html?parkCode=" + pCode;
+			*/
+
+			// const pLink = $("<a class='resLink' href=" + templateUrl + "></a>").text(park.fullName);
+			const cgTitle = $("<h3></h3>").text(cg.name);
+			const cgPark = $("<p></p>").text(pTitle);
+
+
+			resBox.append(cgTitle);
+			resBox.append(cgPark);
+			cgDisplay.append(resBox);
+		}
+	});
+
+	return;
+}
+
+
+
+/* SHOWING EVENT RESULTS */
 function dispEventRes() {
 
 	const evURL = "https://developer.nps.gov/api/v1/events?api_key=" + API_KEY ;
@@ -83,9 +166,21 @@ function dispEventRes() {
 	return;
 }
 
+
+
+/* SHOWING NEWS (NR/ALERTS) RESULTS */
 function dispNewsRes() {
 
-	const newsURL = "https://developer.nps.gov/api/v1/news?api_key=" + API_KEY ;
+	dispNRRes();
+	dispAlRes();
+
+	return;
+}
+
+// News releases.
+function dispNRRes() {
+
+	const newsURL = "https://developer.nps.gov/api/v1/newsreleases?api_key=" + API_KEY ;
 
 	$.getJSON(newsURL, function(data) {
 		// div displaying results
@@ -115,11 +210,45 @@ function dispNewsRes() {
 	return;
 }
 
+// Alerts.
+function dispAlRes() {
+
+	const alURL = "https://developer.nps.gov/api/v1/alerts?api_key=" + API_KEY ;
+
+	$.getJSON(alURL, function(data) {
+		// div displaying results
+		var alDisplay = $("#alertsResults");
+		// Remove "Loading results..." filler.
+		alDisplay.empty();
+
+		// List of all parks
+		var alList = data.data;
+
+		// Populate with name header and state locat for each park.
+		for(alIndex = 0; alIndex < 52; alIndex++) {
+			const alert = alList[alIndex]; // Select-a-release!
+
+			const alLink = $("<a class='resLink' style='color: black;' href=" + alert.url + "></a>").text(alert.category + ": " + alert.title);
+			const alTitle = $("<h3></h3>").html(alLink);
+			// Extract release date
+			const rPara = $("<p></p>").text(alert.description);
+
+			alDisplay.append(alTitle);
+			alDisplay.append(alPara);
+		}
+	});
+
+	return;
+}
+
+
+
+/* SHOWING EDUCATION (LP/ARTICLES/PEOPLE/PLACES) RESULTS */
 function dispEduRes() {
 
-	const newsURL = "https://developer.nps.gov/api/v1/lessonplans?api_key=" + API_KEY ;
+	const eduURL = "https://developer.nps.gov/api/v1/lessonplans?api_key=" + API_KEY ;
 
-	$.getJSON(newsURL, function(data) {
+	$.getJSON(eduURL, function(data) {
 		// div displaying results
 		var lpDisplay = $("#lpResults");
 		// Remove "Loading results..." filler.

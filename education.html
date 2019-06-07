@@ -60,10 +60,34 @@
 				</button><!-- SEE IF CAN SET ICON AS VALUE -->
 			</form>
 
-			<hr />
+			<div class="resNavBar">
+				<ul class="resNavList">
+					<li class="resNavItem">
+						<span class="resNavText" id="eduSelector">
+							Material Type
+						</span>
+						<span style="padding-left: 5px; padding-right: 15px;">&#9662</span>
+						<div class="resDD">
+							<div onclick="$('#lpResults').show(); $('#arResults').hide(); $('#pplResults').hide(); $('#plResults').hide(); $('#eduSelector').text('Lesson Plans');">Lesson Plans</div>
+							<div onclick="$('#lpResults').hide(); $('#arResults').show(); $('#pplResults').hide(); $('#plResults').hide(); $('#eduSelector').text('Articles');">Articles</div>
+							<div onclick="$('#lpResults').hide(); $('#arResults').hide(); $('#pplResults').show(); $('#plResults').hide(); $('#eduSelector').text('People');">People</div>
+							<div onclick="$('#lpResults').hide(); $('#arResults').hide(); $('#pplResults').hide(); $('#plResults').show(); $('#eduSelector').text('Places');">Places</div>
+						</div>
+					</li>
+					<li class="resNavItem">
+						<span class="resNavText">
+							Filter Criteria
+						</span>
+						<span style="padding-left: 5px; padding-right: 15px;">&#9662</span>
+					</li>
+				</ul>
+			</div>
 
 			<!-- SEARCH RESULTS -->
 			<div id="lpResults">Loading lesson plans...</div>
+			<div id="arResults" style="display: none;"></div>
+			<div id="pplResults" style="display: none;"></div>
+			<div id="plResults" style="display: none;"></div>
 
 		</div>
 

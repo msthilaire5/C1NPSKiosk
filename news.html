@@ -60,10 +60,30 @@
 				</button><!-- SEE IF CAN SET ICON AS VALUE -->
 			</form>
 
-			<hr />
+			<div class="resNavBar">
+				<ul class="resNavList">
+					<li class="resNavItem">
+						<span class="resNavText" id="newsSelector">
+							News Type
+						</span>
+						<span style="padding-left: 5px; padding-right: 15px;">&#9662</span>
+						<div class="resDD">
+							<div onclick="$('#newsResults').show(); $('#alertsResults').hide(); $('#newsSelector').text('News Releases');">News Releases</div>
+							<div onclick="$('#newsResults').hide(); $('#alertsResults').show(); $('#newsSelector').text('Alerts');">Alerts</div>
+						</div>
+					</li>
+					<li class="resNavItem">
+						<span class="resNavText">
+							Filter Criteria
+						</span>
+						<span style="padding-left: 5px; padding-right: 15px;">&#9662</span>
+					</li>
+				</ul>
+			</div>
 
 			<!-- SEARCH RESULTS -->
 			<div id="newsResults">Loading news releases...</div>
+			<div id="alertsResults" style="display: none;"></div>
 
 
 		</div>

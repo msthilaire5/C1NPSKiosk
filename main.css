@@ -22,6 +22,7 @@ body, html {
 	z-index: -1;
 }
 
+
 /* SCROLLING ALERTS BAR */
 .alertsBar {
 	background-color: #b3b3b3;
@@ -173,6 +174,7 @@ body, html {
 	color: white;
 }
 
+
 /* MAIN PAGE CONTENT */
 .pageContent {
 	margin: 70px 15px;
@@ -185,6 +187,7 @@ body, html {
 
 	height: auto;
 }
+
 
 /* BOX FOR EACH RESULT */
 .resBox {
@@ -240,60 +243,81 @@ body, html {
 	text-decoration: underline;
 }
 
+
 /* Differentiating within section types, e.g. b/w parks, visitor centers, and campgrounds. */
 .resNavBar {
 	background-color: black;
-	display: block;
 	margin-top: 20px;
 	margin-bottom: 20px;
+
+	position: relative;
 
 	height: 50px;
 	width: 100%;
 }
 
 .resNavList {
-	height: 100%;
+	width: 100%;
 
 	color: white;
 	list-style-type: none;
-	overflow: hidden;
+	overflow: visible;
 	margin: 0px;
 	padding: 0px;
 }
 
 .resNavItem {
 	display: inline-block;
-	padding: 15px;
+	cursor: pointer;
+	overflow-y: hidden;
+	line-height: 50px;
+
+	float: left;
+	z-index: 3;
+
 	margin: 0px;
+}
+
+.resNavText {
+	padding-left: 15px;
 }
 
 .resNavItem:hover {
 	background-color: #333;
-	cursor: pointer;
+}
+
+.resNavItem:hover > .resDD {
+	display: block;
 }
 
 /* Drop-down for locat/news/education content types!! */
 .resDD {
-	display: none;
-	position: absolute;
-	background-color: #333;
 	width: inherit;
+
+	background-color: #333;
+	display: none;
+	line-height: initial;
+
+	position: absolute;
 	z-index: 3;
 }
 
-.resDD:hover .resDD > div {
-	display: block;
-}
-
-.resDD > div {
+.resDD div {
 	color: white;
+	background-color: #333;
+	border-top: 1px solid white;
+	display: block;
+
 	padding: 15px;
+}
+
+.resDD div:hover {
+	color: white;
+	background-color: black;
 	display: block;
 }
 
-.resDD:hover {
-	background-color: gray;
-}
+
 
 
 
