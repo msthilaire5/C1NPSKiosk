@@ -231,7 +231,7 @@ function dispAlRes() {
 			const alLink = $("<a class='resLink' style='color: black;' href=" + alert.url + "></a>").text(alert.category + ": " + alert.title);
 			const alTitle = $("<h3></h3>").html(alLink);
 			// Extract release date
-			const rPara = $("<p></p>").text(alert.description);
+			const alPara = $("<p></p>").text(alert.description);
 
 			alDisplay.append(alTitle);
 			alDisplay.append(alPara);
@@ -246,9 +246,20 @@ function dispAlRes() {
 /* SHOWING EDUCATION (LP/ARTICLES/PEOPLE/PLACES) RESULTS */
 function dispEduRes() {
 
-	const eduURL = "https://developer.nps.gov/api/v1/lessonplans?api_key=" + API_KEY ;
+	dispLPRes();
+	dispArRes();
+	dispPplRes();
+	dispPlRes();
 
-	$.getJSON(eduURL, function(data) {
+	return;
+}
+
+// Lesson plans.
+function dispLPRes() {
+
+	const lpURL = "https://developer.nps.gov/api/v1/lessonplans?api_key=" + API_KEY ;
+
+	$.getJSON(lpURL, function(data) {
 		// div displaying results
 		var lpDisplay = $("#lpResults");
 		// Remove "Loading results..." filler.
@@ -273,6 +284,110 @@ function dispEduRes() {
 			resBox.append(lpGrade);
 
 			lpDisplay.append(resBox);
+		}
+	});
+
+	return;
+}
+
+// Articles.
+function dispArRes() {
+
+	const arURL = "https://developer.nps.gov/api/v1/articles?api_key=" + API_KEY ;
+
+	$.getJSON(arURL, function(data) {
+		// div displaying results
+		var arDisplay = $("#arResults");
+		// Remove "Loading results..." filler.
+		arDisplay.empty();
+
+		// List of all parks
+		var arList = data.data;
+
+		// Populate with name header and state locat for each park.
+		for(arIndex = 0; arIndex < 52; arIndex++) {
+			const article = arList[arIndex]; // Select-a-release!
+			var resBox = $("<div class='resBox'></div>"); // Box it!
+
+			const arLink = $("<a class='resLink' href=" + article.url + "></a>").text(article.title);
+			const arTitle = $("<h3></h3>").html(arLink);
+			// Extract description
+			const arPara = $("<p></p>").text(article.listingdescription);
+
+			arDisplay.append(arTitle);
+			arDisplay.append(arPara);
+		}
+	});
+
+	return;
+}
+
+// People.
+function dispPplRes() {
+
+	const pplURL = "https://developer.nps.gov/api/v1/people?api_key=" + API_KEY ;
+
+	$.getJSON(pplURL, function(data) {
+		// div displaying results
+		var pplDisplay = $("#pplResults");
+		// Remove "Loading results..." filler.
+		pplDisplay.empty();
+
+		// List of all parks
+		var pplList = data.data;
+
+		// Populate with name header and state locat for each park.
+		for(pplIndex = 0; pplIndex < 52; pplIndex++) {
+			const person = pplList[pplIndex]; // Select-a-release!
+			var resBox = $("<div class='resBox'></div>"); // Box it!
+
+			const pplLink = $("<a class='resLink' href=" + person.url + "></a>").text(person.title);
+			const pplTitle = $("<h3></h3>").html(pplLink);
+			// Extract description
+			const pplDesc = $("<p></p>").text(ppl.listingdescription);
+			// const lpGrade = $("<p></p>").text(lPlan.gradelevel);
+
+			resBox.append(pplTitle);
+			resBox.append(pplDesc);
+			// resBox.append(lpGrade);
+
+			pplDisplay.append(resBox);
+		}
+	});
+
+	return;
+}
+
+// Places.
+function dispPlRes() {
+
+	const plURL = "https://developer.nps.gov/api/v1/places?api_key=" + API_KEY ;
+
+	$.getJSON(plURL, function(data) {
+		// div displaying results
+		var plDisplay = $("#plResults");
+		// Remove "Loading results..." filler.
+		plDisplay.empty();
+
+		// List of all parks
+		var plList = data.data;
+
+		// Populate with name header and state locat for each park.
+		for(plIndex = 0; plIndex < 52; plIndex++) {
+			const place = plList[plIndex]; // Select-a-release!
+			var resBox = $("<div class='resBox'></div>"); // Box it!
+
+			const plLink = $("<a class='resLink' href=" + place.url + "></a>").text(place.title);
+			const plTitle = $("<h3></h3>").html(plLink);
+			// Extract description.
+			const plDesc = $("<p></p>").text(person.listingdescription);
+			// const lpGrade = $("<p></p>").text(lPlan.gradelevel);
+
+			resBox.append(plTitle);
+			resBox.append(plDesc);
+			// resBox.append(lpGrade);
+
+			plDisplay.append(resBox);
 		}
 	});
 
