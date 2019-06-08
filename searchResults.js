@@ -21,7 +21,7 @@ function dispLocRes() {
 		var parkList = data.data;
 
 		// Populate with name header and state locat for each park.
-		for(pIndex = 0; pIndex < 52; pIndex++) {
+		for(pIndex = 0; pIndex < parkList.length; pIndex++) {
 			const park = parkList[pIndex]; // Select-a-park!
 			var resBox = $("<div class='resBox'></div>"); // Box it!
 
@@ -36,13 +36,12 @@ function dispLocRes() {
 
 			resBox.append(pTitle);
 			resBox.append(pStates);
-			/* Apparently park data doesn't come with pics... I was lied to?
+			// Apparently park data doesn't come with pics... I was lied to?
 			if (park.images) {
 				const pImgURL = park.images[0].url;
 				const pImg = $("<img class='resBoxImg' src='" + pImgURL + "'></img>");
 				resBox.append(pImg);
 			}
-			*/
 			parkDisplay.append(resBox);
 		}
 	});
@@ -145,14 +144,14 @@ function dispEventRes() {
 		var eventList = data.data;
 
 		// Populate with name header and state locat for each park.
-		for(eIndex = 0; eIndex < 50; eIndex++) {
+		for(eIndex = 0; eIndex < eventList.length; eIndex++) {
 			const event = eventList[eIndex]; // Select-an-event!
 			var resBox = $("<div class='resBox'></div>"); // Box it!
 
 			const eTitle = $("<h3></h3>").text(event.title);
 			const eLocat = $("<p></p>").text(event.parkfullname);
 			const eDate = new Date(event.date);
-			const eDateStr = eDate.toDateString();
+			const eDateStr = eDate.toLocaleDateString('en-US');
 			const eDatePar = $("<p></p>").text(eDateStr);
 
 
@@ -192,7 +191,7 @@ function dispNRRes() {
 		var newsList = data.data;
 
 		// Populate with name header and state locat for each park.
-		for(nIndex = 0; nIndex < 52; nIndex++) {
+		for(nIndex = 0; nIndex < newsList.length; nIndex++) {
 			const release = newsList[nIndex]; // Select-a-release!
 
 			const rLink = $("<a class='resLink' style='color: black;' href=" + release.url + "></a>").text(release.title);
@@ -225,7 +224,7 @@ function dispAlRes() {
 		var alList = data.data;
 
 		// Populate with name header and state locat for each park.
-		for(alIndex = 0; alIndex < 52; alIndex++) {
+		for(alIndex = 0; alIndex < alList.length; alIndex++) {
 			const alert = alList[alIndex]; // Select-a-release!
 
 			const alLink = $("<a class='resLink' style='color: black;' href=" + alert.url + "></a>").text(alert.category + ": " + alert.title);
@@ -269,7 +268,7 @@ function dispLPRes() {
 		var lpList = data.data;
 
 		// Populate with name header and state locat for each park.
-		for(lpIndex = 0; lpIndex < 52; lpIndex++) {
+		for(lpIndex = 0; lpIndex < lpList.length; lpIndex++) {
 			const lPlan = lpList[lpIndex]; // Select-a-release!
 			var resBox = $("<div class='resBox'></div>"); // Box it!
 
@@ -305,17 +304,21 @@ function dispArRes() {
 		var arList = data.data;
 
 		// Populate with name header and state locat for each park.
-		for(arIndex = 0; arIndex < 52; arIndex++) {
+		for(arIndex = 0; arIndex < arList.length; arIndex++) {
 			const article = arList[arIndex]; // Select-a-release!
-			var resBox = $("<div class='resBox'></div>"); // Box it!
+			var resBox = $("<div class='resBox' style='color: black;'></div>"); // Box it!
 
 			const arLink = $("<a class='resLink' href=" + article.url + "></a>").text(article.title);
 			const arTitle = $("<h3></h3>").html(arLink);
+			const arImg = $("<img class='resBoxImg' src=" + article.listingimage.url + "></img>");
 			// Extract description
 			const arPara = $("<p></p>").text(article.listingdescription);
 
-			arDisplay.append(arTitle);
-			arDisplay.append(arPara);
+			resBox.append(arTitle);
+			resBox.append(arImg);
+			resBox.append(arPara);
+
+			arDisplay.append(resBox);
 		}
 	});
 
@@ -337,17 +340,19 @@ function dispPplRes() {
 		var pplList = data.data;
 
 		// Populate with name header and state locat for each park.
-		for(pplIndex = 0; pplIndex < 52; pplIndex++) {
+		for(pplIndex = 0; pplIndex < pplList.length; pplIndex++) {
 			const person = pplList[pplIndex]; // Select-a-release!
 			var resBox = $("<div class='resBox'></div>"); // Box it!
 
 			const pplLink = $("<a class='resLink' href=" + person.url + "></a>").text(person.title);
 			const pplTitle = $("<h3></h3>").html(pplLink);
+			const pplImg = $("<img class='resBoxImg' src=" + person.listingimage.url + "></img>");
 			// Extract description
 			const pplDesc = $("<p></p>").text(person.listingdescription);
 			// const lpGrade = $("<p></p>").text(lPlan.gradelevel);
 
 			resBox.append(pplTitle);
+			resBox.append(pplImg);
 			resBox.append(pplDesc);
 			// resBox.append(lpGrade);
 
@@ -373,17 +378,19 @@ function dispPlRes() {
 		var plList = data.data;
 
 		// Populate with name header and state locat for each park.
-		for(plIndex = 0; plIndex < 52; plIndex++) {
+		for(plIndex = 0; plIndex < plList.length; plIndex++) {
 			const place = plList[plIndex]; // Select-a-release!
 			var resBox = $("<div class='resBox'></div>"); // Box it!
 
 			const plLink = $("<a class='resLink' href=" + place.url + "></a>").text(place.title);
 			const plTitle = $("<h3></h3>").html(plLink);
+			const plImg = $("<img class='resBoxImg' src=" + place.listingimage.url + "></img>");
 			// Extract description.
 			const plDesc = $("<p></p>").text(place.listingdescription);
 			// const lpGrade = $("<p></p>").text(lPlan.gradelevel);
 
 			resBox.append(plTitle);
+			resBox.append(plImg);
 			resBox.append(plDesc);
 			// resBox.append(lpGrade);
 
