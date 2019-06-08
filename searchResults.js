@@ -344,7 +344,7 @@ function dispPplRes() {
 			const pplLink = $("<a class='resLink' href=" + person.url + "></a>").text(person.title);
 			const pplTitle = $("<h3></h3>").html(pplLink);
 			// Extract description
-			const pplDesc = $("<p></p>").text(ppl.listingdescription);
+			const pplDesc = $("<p></p>").text(person.listingdescription);
 			// const lpGrade = $("<p></p>").text(lPlan.gradelevel);
 
 			resBox.append(pplTitle);
@@ -380,7 +380,7 @@ function dispPlRes() {
 			const plLink = $("<a class='resLink' href=" + place.url + "></a>").text(place.title);
 			const plTitle = $("<h3></h3>").html(plLink);
 			// Extract description.
-			const plDesc = $("<p></p>").text(person.listingdescription);
+			const plDesc = $("<p></p>").text(place.listingdescription);
 			// const lpGrade = $("<p></p>").text(lPlan.gradelevel);
 
 			resBox.append(plTitle);
