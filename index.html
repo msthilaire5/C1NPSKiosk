@@ -18,41 +18,50 @@
 
 	<div class="content">
 
-		<!-- LOGO & TITLE -->
-		<table style="width: auto; height: auto; margin-left: auto; margin-right: auto; margin-top: 30px;">
-			<tr>
-				<td><img src="BackgroundPics/NPSLogo.png" style="width: 200px; height: 250px;"></img></td>
-				<td><h1 style = "text-align: center; font-size: 48px;">NPS VIRTUAL KIOSK</h1></td>
-			</tr>
-		</table>
+		<!-- NAVBAR!!! -->
+		<div class="typNavBar">
+			<img src="BackgroundPics/NPSLogo.png" class="menuLogo"></img>
+			<h1 class="menuTitle">NPS VIRTUAL KIOSK</h1>
+
+			<!-- MENU -->
+			<ul class="navList">
+				<li class="navItem"><a href="index.html" class="navLink active">Home</a></li>
+				<li class="navItem"><a href="locations.html" class="navLink">Locations</a></li>
+				<li class="navItem"><a href="events.html" class="navLink" >Events</a></li>
+				<li class="navItem"><a href="news.html" class="navLink">News</a></li>
+				<li class="navItem"><a href="education.html" class="navLink">Education</a></li>
+			</ul>
+		</div>
+
+		<!-- PAGE CONTENT -->
+		<div class="landingContent">
+
+			<!-- LOGO & TITLE -->
+			<table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+				<tr>
+					<td><img src="BackgroundPics/NPSLogo.png" style="width: 200px; height: 250px;"></img></td>
+					<td><h1 style = "text-align: center; font-size: 48px;">NPS VIRTUAL KIOSK</h1></td>
+				</tr>
+			</table>
 		
 
-		<!-- OVERALL SEARCH ON LANDING -->
-		<h2 style="text-align: center; font-size: 30px;">What can we help you find?</h2>
-		<p style="text-align: center; font-style: italic;">
-			Type keywords into the search bar below or start by narrowing your search in the menu below.
-		</p>
+			<!-- OVERALL SEARCH ON LANDING -->
+			<h2 style="text-align: center; font-size: 30px;">What can we help you find?</h2>
+			<p style="text-align: center; font-style: italic;">
+				Type keywords into the search bar below or start by narrowing your search in the menu above.
+			</p>
 
 
-		<!-- SEARCH BAR -->
-		<form style="text-align: center;">
-			<input type="text" name="keywords" style="width: 50%; height: 35px;">
-			<button type="submit" class="searchButton">
-				<i class="fa fa-search"></i>
-			</button><!-- SEE IF CAN SET ICON AS VALUE -->
-		</form>
+			<!-- SEARCH BAR -->
+			<form style="text-align: center;">
+				<input type="text" name="keywords" style="width: 50%; height: 35px;">
+				<button type="submit" class="searchButton">
+					<i class="fa fa-search"></i>
+				</button>
+			</form>
 
-		<!-- MENU -->
-		<table class="landingMenu">
-			<tr>
-				<td class="menuOption"><button class="landingButton" onclick="window.location.href='locations.html'">Locations</button></td>
-				<td class="menuOption"><button class="landingButton" onclick="window.location.href='events.html'">Events</button></td>
-			</tr>
-			<tr>
-				<td class="menuOption"><button class="landingButton" onclick="window.location.href='news.html'">News</button></td>
-				<td><button class="landingButton" onclick="window.location.href='education.html'">Education</button></td>
-			</tr>
-		</table>
+		</div>
+
 
 		<!-- ALERTS BAR, MAKE SURE HAS FIXED POSIT -->
 		<div>

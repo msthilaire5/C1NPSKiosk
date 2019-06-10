@@ -182,6 +182,11 @@ function dispEventRes() {
 
 
 				resBox.append(eTitle);
+				if (event.images.length > 0) {
+					const evImgURL = event.images[0].url;
+					const evImg = $("<img class='resBoxImg' src='http://www.nps.gov/" + evImgURL + "'></img>");
+					resBox.append(evImg);
+				}
 				resBox.append(eLocat);
 				resBox.append(eDatePar);
 				eventDisplay.append(resBox);

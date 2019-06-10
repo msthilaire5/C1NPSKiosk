@@ -189,7 +189,27 @@ body, html {
 }
 
 
-/* BOX FOR EACH RESULT */
+/* BIG LOGO & TITLE & SEARCH BAR ON LANDING PAGE */
+.landingContent {
+	height: auto;
+
+	margin-top: 70px;
+	margin-bottom: 70px;
+}
+
+
+/* BOXES FOR EACH RESULT */
+
+.resHolder {
+	width: auto;
+	height: auto;
+
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: baseline;
+}
+
 .resBox {
 	width: 30%;
 	height: auto;
@@ -198,7 +218,7 @@ body, html {
 	hyphens: auto;
 	-webkit-hyphens: auto;
  	-ms-hyphens: auto;
-	display: inline-grid;
+	/* display: inline-grid; */
 	text-align: center;
 	background-color: white;
 	margin: 10px;
