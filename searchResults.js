@@ -4,7 +4,7 @@
 */
 
 // if no API key given, prompt user for one to use for rest of requests!
-const API_KEY = (localStorage.API_KEY) ? (localStorage.API_KEY) : getAPIKey();
+const API_KEY = (localStorage.API_KEY && ((localStorage != null) || (localStorage.API_KEY != ""))) ? (localStorage.API_KEY) : getAPIKey();
 
 function getAPIKey() {
 	
