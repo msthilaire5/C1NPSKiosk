@@ -3,6 +3,17 @@
 	searchResults.js -- This file's code implements display of different kinds of search results!
 */
 
+// if no API key given, prompt user for one to use for rest of requests!
+const API_KEY = (localStorage.API_KEY) ? (localStorage.API_KEY) : getAPIKey();
+
+function getAPIKey() {
+	
+	var userInput = prompt("Please enter your NPS API key: ");
+	localStorage.setItem("API_KEY", userInput);
+	return userInput;
+
+}
+
 /* ISOLATING QUERY TERM FROM SEARCH BAR */
 function isolateQuery() {
 

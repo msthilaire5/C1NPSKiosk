@@ -12,7 +12,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<!-- EXTERNAL JS FILE -->
 	<script src="searchResults.js"></script>
-	<script src="secret.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			loadAlertsBar();
+		}
+	</script>
 </head>
 
 <body>
@@ -76,9 +80,6 @@
 					<td class="alertsScrolling">
 						<p>
 							<marquee id="alertsText">
-								<script type="text/javascript">
-									loadAlertsBar();
-								</script>
 							</marquee>
 						</p>
 					</td>
