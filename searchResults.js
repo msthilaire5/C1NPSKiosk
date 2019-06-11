@@ -3,10 +3,9 @@
 	searchResults.js -- This file's code implements display of different kinds of search results!
 */
 
-const API_KEY = "";
-
 /* ISOLATING QUERY TERM FROM SEARCH BAR */
 function isolateQuery() {
+
 	var qTerm = "";
 	// Check if given query term from search bar.
 	var pageURL = window.location.href;
@@ -19,12 +18,40 @@ function isolateQuery() {
 	return qTerm;
 }
 
+
+/* LOADING SCROLLING ALERTS BAR MESSAGES */
+function loadAlertsBar() {
+
+	var alertsURL = "https://developer.nps.gov/api/v1/alerts?limit=10&api_key=" + API_KEY ;
+
+	$.getJSON(alertsURL, function(data) { // Make request to API
+		// div displaying results
+		var scrollDisplay = $("#alertsText");
+
+		// List of alerts
+		var alertList = data.data;
+		// List of messages.
+		var alMessages = ""
+
+		// Populate with name header and state locat for each park.
+		for(aIndex = 0; aIndex < alertList.length; aIndex++) {
+			const alert = alertList[aIndex]; // Select-an-alert!
+
+			alMessages += (alert.category.toUpperCase() + ": " + alert.title + ". \u0009");
+		}
+
+		scrollDisplay.text(alMessages);
+	});
+
+	return;
+}
+
 /* SHOWING PARKS RESULTS */
 function dispLocRes() {
 
 	// URL for retrieving data from API.
-	var locURL = "https://developer.nps.gov/api/v1/parks?api_key=" + API_KEY ;
-	// Check if given query term from search bar.
+	var locURL = "https://developer.nps.gov/api/v1/parks?fields=images&api_key=" + API_KEY ;
+	// Add search term, if any.
 	locURL += isolateQuery();
 
 	$.getJSON(locURL, function(data) { // Make request to API
@@ -52,13 +79,12 @@ function dispLocRes() {
 
 
 				resBox.append(pTitle);
-				resBox.append(pStates);
-				// Apparently park data doesn't come with pics... I was lied to?
 				if (park.images) {
 					const pImgURL = park.images[0].url;
 					const pImg = $("<img class='resBoxImg' src='" + pImgURL + "'></img>");
 					resBox.append(pImg);
 				}
+				resBox.append(pStates);
 				parkDisplay.append(resBox);
 			}
 		}
@@ -164,12 +190,12 @@ function dispEventRes() {
 		// Remove "Loading results..." filler.
 		eventDisplay.empty();
 
-		// List of all parks
+		// List of all events
 		var eventList = data.data;
 		console.log("Results Found: " + eventList.length);
 
 		if (eventList.length > 0) {
-			// Populate with name header and state locat for each park.
+			// Populate with event title, location, start date, and potential image.
 			for(eIndex = 0; eIndex < eventList.length; eIndex++) {
 				const event = eventList[eIndex]; // Select-an-event!
 				var resBox = $("<div class='resBox'></div>"); // Box it!
@@ -226,11 +252,11 @@ function dispNRRes(query) {
 		// Remove "Loading results..." filler.
 		newsDisplay.empty();
 
-		// List of all parks
+		// List of all news releases
 		var newsList = data.data;
 
 		if (newsList.length > 0) {
-			// Populate with name header and state locat for each park.
+			// Populate with title, date, and summary of news release.
 			for(nIndex = 0; nIndex < newsList.length; nIndex++) {
 				const release = newsList[nIndex]; // Select-a-release!
 
@@ -266,13 +292,13 @@ function dispAlRes(query) {
 		// Remove "Loading results..." filler.
 		alDisplay.empty();
 
-		// List of all parks
+		// List of all alerts
 		var alList = data.data;
 
 		if (alList.length > 0) {
-			// Populate with name header and state locat for each park.
+			// Populate with category, title, and summary of alert.
 			for(alIndex = 0; alIndex < alList.length; alIndex++) {
-				const alert = alList[alIndex]; // Select-a-release!
+				const alert = alList[alIndex]; // Select-an-alert!
 
 				const alLink = $("<a class='resLink' style='color: black;' href=" + alert.url + "></a>").text(alert.category + ": " + alert.title);
 				const alTitle = $("<h3></h3>").html(alLink);
@@ -318,18 +344,17 @@ function dispLPRes(query) {
 		// Remove "Loading results..." filler.
 		lpDisplay.empty();
 
-		// List of all parks
+		// List of all lesson plans
 		var lpList = data.data;
 
 		if (lpList.length > 0) {
-			// Populate with name header and state locat for each park.
+			// Populate with name, subject, and grade level of each plan.
 			for(lpIndex = 0; lpIndex < lpList.length; lpIndex++) {
-				const lPlan = lpList[lpIndex]; // Select-a-release!
+				const lPlan = lpList[lpIndex]; // Select-a-lesson-plan!
 				var resBox = $("<div class='resBox'></div>"); // Box it!
 
 				const lpLink = $("<a class='resLink' href=" + lPlan.url + "></a>").text(lPlan.title);
 				const lpTitle = $("<h3></h3>").html(lpLink);
-				// Extract release date
 				const lpSub = $("<p></p>").text(lPlan.subject);
 				const lpGrade = $("<p></p>").text(lPlan.gradelevel);
 
@@ -361,13 +386,13 @@ function dispArRes(query) {
 		// Remove "Loading results..." filler.
 		arDisplay.empty();
 
-		// List of all parks
+		// List of all articles
 		var arList = data.data;
 
 		if (arList.length > 0) {
-			// Populate with name header and state locat for each park.
+			// Populate with title, image, and description of each article
 			for(arIndex = 0; arIndex < arList.length; arIndex++) {
-				const article = arList[arIndex]; // Select-a-release!
+				const article = arList[arIndex]; // Select-an-article!
 				var resBox = $("<div class='resBox' style='color: black;'></div>"); // Box it!
 
 				const arLink = $("<a class='resLink' href=" + article.url + "></a>").text(article.title);
@@ -404,26 +429,23 @@ function dispPplRes(query) {
 		// Remove "Loading results..." filler.
 		pplDisplay.empty();
 
-		// List of all parks
+		// List of all people
 		var pplList = data.data; 
 
 		if (pplList.length > 0) {
-			// Populate with name header and state locat for each park.
+			// Populate with name, image, and description of each person.
 			for(pplIndex = 0; pplIndex < pplList.length; pplIndex++) {
-				const person = pplList[pplIndex]; // Select-a-release!
-				var resBox = $("<div class='resBox'></div>"); // Box it!
+				const person = pplList[pplIndex]; // Select-a-person!
+				var resBox = $("<div class='resBox'></div>"); // Box them!
 
 				const pplLink = $("<a class='resLink' href=" + person.url + "></a>").text(person.title);
 				const pplTitle = $("<h3></h3>").html(pplLink);
 				const pplImg = $("<img class='resBoxImg' src=" + person.listingimage.url + "></img>");
-				// Extract description
 				const pplDesc = $("<p></p>").text(person.listingdescription);
-				// const lpGrade = $("<p></p>").text(lPlan.gradelevel);
 
 				resBox.append(pplTitle);
 				resBox.append(pplImg);
 				resBox.append(pplDesc);
-				// resBox.append(lpGrade);
 
 				pplDisplay.append(resBox);
 			}
@@ -449,26 +471,23 @@ function dispPlRes(query) {
 		// Remove "Loading results..." filler.
 		plDisplay.empty();
 
-		// List of all parks
+		// List of all places
 		var plList = data.data;
 
 		if (plList.length > 0) {
 			// Populate with name header and state locat for each park.
 			for(plIndex = 0; plIndex < plList.length; plIndex++) {
-				const place = plList[plIndex]; // Select-a-release!
+				const place = plList[plIndex]; // Select-a-place!
 				var resBox = $("<div class='resBox'></div>"); // Box it!
 
 				const plLink = $("<a class='resLink' href=" + place.url + "></a>").text(place.title);
 				const plTitle = $("<h3></h3>").html(plLink);
 				const plImg = $("<img class='resBoxImg' src=" + place.listingimage.url + "></img>");
-				// Extract description.
 				const plDesc = $("<p></p>").text(place.listingdescription);
-				// const lpGrade = $("<p></p>").text(lPlan.gradelevel);
 
 				resBox.append(plTitle);
 				resBox.append(plImg);
 				resBox.append(plDesc);
-				// resBox.append(lpGrade);
 
 				plDisplay.append(resBox);
 			}

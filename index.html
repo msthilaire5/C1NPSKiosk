@@ -10,6 +10,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- JQUERY "IMPORT" -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<!-- EXTERNAL JS FILE -->
+	<script src="searchResults.js"></script>
+	<script src="secret.js"></script>
 </head>
 
 <body>
@@ -72,8 +75,10 @@
 					</td>
 					<td class="alertsScrolling">
 						<p>
-							<marquee>
-								Park in SF is closed.
+							<marquee id="alertsText">
+								<script type="text/javascript">
+									loadAlertsBar();
+								</script>
 							</marquee>
 						</p>
 					</td>
