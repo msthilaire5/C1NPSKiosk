@@ -41,8 +41,11 @@ function dispParkLB(pCode) {
 		// Cost & weather info
 		var costWeath = $("<div></div>");
 		var cwHeader = $("<h3 class='colHeader'></h3>").text("Coming to " + park.fullName);
+		// Cost in left col
 		var costDiv = $("<div class='leftCol'></div>");
 		const cHeader = $("<h4></h4>").text("Costs");
+		costDiv.append(cHeader);
+		
 
 
 

@@ -311,6 +311,80 @@ body, html {
 }
 
 
+/* PARK LIGHTBOX TEMPLATE */
+/* Gray out background */
+.locLBBG {
+	/*display: none; */
+	background-color: rgba(0,0,0,0.5);
+	color: black;
+
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	z-index: 20;
+
+	width: 100%;
+	height: 100%;
+}
+
+/* Actual lightbox content */
+.locLB {
+	background-color: white;
+	overflow: auto;
+
+	margin: auto;
+	padding: 20px;
+
+	width: 90%;
+	height: 90%;
+}
+
+.locLBHeader {
+	width: 100%;
+}
+
+.locLBBody {
+	width: 100%;
+}
+
+/* Close button in top right corner */
+.lbClose {
+	color: #333;
+	font-size: 28px;
+	font-weight: bold;
+
+	float: right;
+}
+
+.lbClose:hover, .lbClose:focus {
+	color: black;
+	cursor: pointer;
+}
 
 
+/* Columns in lightbox */
+.lbCol {
+	float: left;
+
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Section headers in lightbox */
+.lbSectionHeader {
+	display: block;
+	color: white;
+	background-color: black;
+
+	width: 100%;
+
+	padding: 10px;
+	box-sizing: border-box;
+}
 
