@@ -188,12 +188,16 @@ function dispCGRes(pTitle, pCode, query) {
 
 
 /* SHOWING EVENT RESULTS */
-function dispEventRes() {
+function dispEventRes(pCode) {
 
 	// URL for getting API data
 	var evURL = "https://developer.nps.gov/api/v1/events?api_key=" + API_KEY ;
 	// Check if given query term from search bar.
 	evURL += isolateQuery();
+	// Isolate pCode!
+	if (pCode != "") {
+		evURL += ("&parkCode=" + pCode);
+	}
 
 	$.getJSON(evURL, function(data) { // Make request to API
 		// div displaying results
@@ -243,19 +247,22 @@ function dispEventRes() {
 function dispNewsRes() {
 
 	var query = isolateQuery();
-	dispNRRes(query);
-	dispAlRes(query);
+	dispNRRes(query, "");
+	dispAlRes(query, "");
 
 	return;
 }
 
 // News releases.
-function dispNRRes(query) {
+function dispNRRes(query, pCode) {
 
 	// URL for request to API
 	var newsURL = "https://developer.nps.gov/api/v1/newsreleases?api_key=" + API_KEY ;
 	// Check if given query term from search bar.
 	newsURL += query;
+	if (pCode != "") {
+		newsURL += ("&parkCode=" + pCode);
+	}
 
 	$.getJSON(newsURL, function(data) {
 		// div displaying results
@@ -291,11 +298,14 @@ function dispNRRes(query) {
 }
 
 // Alerts.
-function dispAlRes(query) {
+function dispAlRes(query, pCode) {
 
 	var alURL = "https://developer.nps.gov/api/v1/alerts?api_key=" + API_KEY ;
 	// Check if given query term from search bar.
 	alURL += query;
+	if (pCode != "") {
+		alURL += ("&parkCode=" + pCode);
+	}
 
 	$.getJSON(alURL, function(data) {
 		// div displaying results
@@ -334,20 +344,23 @@ function dispAlRes(query) {
 function dispEduRes() {
 
 	var query = isolateQuery();
-	dispLPRes(query);
-	dispArRes(query);
-	dispPplRes(query);
-	dispPlRes(query);
+	dispLPRes(query, "");
+	dispArRes(query, "");
+	dispPplRes(query, "");
+	dispPlRes(query, "");
 
 	return;
 }
 
 // Lesson plans.
-function dispLPRes(query) {
+function dispLPRes(query, pCode) {
 
 	var lpURL = "https://developer.nps.gov/api/v1/lessonplans?api_key=" + API_KEY ;
 	// Check if given query term from search bar.
 	lpURL += query;
+	if (pCode != "") {
+		lpURL += ("&parkCode=" + pCode);
+	}
 
 	$.getJSON(lpURL, function(data) {
 		// div displaying results
@@ -385,11 +398,14 @@ function dispLPRes(query) {
 }
 
 // Articles.
-function dispArRes(query) {
+function dispArRes(query, pCode) {
 
 	var arURL = "https://developer.nps.gov/api/v1/articles?api_key=" + API_KEY ;
 	// Check if given query term from search bar.
 	arURL += query;
+	if (pCode != "") {
+		arURL += ("&parkCode=" + pCode);
+	}
 
 	$.getJSON(arURL, function(data) {
 		// div displaying results
@@ -428,11 +444,14 @@ function dispArRes(query) {
 }
 
 // People.
-function dispPplRes(query) {
+function dispPplRes(query, pCode) {
 
 	var pplURL = "https://developer.nps.gov/api/v1/people?api_key=" + API_KEY ;
 	// Check if given query term from search bar.
 	pplURL += query;
+	if (pCode != "") {
+		pplURL += ("&parkCode=" + pCode);
+	}
 
 	$.getJSON(pplURL, function(data) {
 		// div displaying results
@@ -470,11 +489,14 @@ function dispPplRes(query) {
 }
 
 // Places.
-function dispPlRes(query) {
+function dispPlRes(query, pCode) {
 
 	var plURL = "https://developer.nps.gov/api/v1/places?api_key=" + API_KEY ;
 	// Check if given query term from search bar.
 	plURL += query;
+	if (pCode != "") {
+		plURL += ("&parkCode=" + pCode);
+	}
 
 	$.getJSON(plURL, function(data) {
 		// div displaying results
@@ -510,3 +532,116 @@ function dispPlRes(query) {
 
 	return;
 }
+
+
+/* PARK-SPECIFIC PAGES */
+function loadParkInfo() {
+
+	// Get parkCode from URL.
+	var pageURL = window.location.href;
+	var pcPosit = pageURL.indexOf("="); // Locating pCode in URL
+	const pCode = pageURL.substring(pcPosit + 1, pageURL.length);
+
+	// URL for retrieving data from API.
+	var locURL = "https://developer.nps.gov/api/v1/parks?fields=images,addresses,contacts,entranceFees,entrancePasses,operatingHours&api_key=" + API_KEY + "&parkCode=" + pCode;
+
+	$.getJSON(locURL, function(data){
+
+		// Extract park data
+		const park = data.data[0];
+
+
+		// FILLING IN TEMPLATE
+		$("title").text(park.name + " | NPS Virtual Kiosk");
+		// Header w/ park name
+		$('#parkName').text(park.fullName);
+		// Designation & URL
+		$('#parkDesig').html(park.designation + " &#8226; <a style='color: black; text-decoration: underline;' href='" + park.url + "'>" + park.url + "</a></p>");
+
+		// Img + description
+		$('#parkImg').attr("src", park.images[0].url); // Image
+		$('#parkDescr').text(park.description); // Description
+
+		// Cost + weather info
+		$('#cwHeader').text("Coming to " + park.name); // Cost & weather section header
+		// Cost info
+		var costDiv = $('#costDiv');
+		const costList = [...park.entranceFees,...park.entrancePasses]; // array of fees
+		for(cIndex = 0; cIndex < costList.length; cIndex++) {
+			var cTitle = $("<h5></h5>"); // Cost type and price
+			cTitle.text(costList[cIndex].title + ", $" + parseInt(costList[cIndex].cost).toFixed(2));
+			var cDescr = $("<p></p>"); // More info
+			cDescr.text(costList[cIndex].description);
+
+			costDiv.append(cTitle);
+			costDiv.append(cDescr);
+		}
+		// Weather info
+		$('#weatherPara').text(park.weatherInfo);
+
+		// [VC & CG INFO!!!!!!!!]
+
+		// News releases
+		dispNRRes("", pCode);
+
+		// Education section (lesson plans, articles, people, places)
+		dispLPRes("", pCode);
+		dispArRes("", pCode);
+		dispPplRes("", pCode);
+		dispPlRes("", pCode);
+
+		// Alerts & events side bar
+		dispAlRes("", pCode);
+		dispEventRes(pCode);
+
+		// Contact info! "Getting in Touch"
+		// Addresses
+		var addrDisplay = $('#addressDiv');
+		const pAddresses = park.addresses;
+		for (addrIndex = 0; addrIndex < pAddresses.length; addrIndex++) {
+
+			addrDisplay.append($("<h5></h5>").text(pAddresses[addrIndex].type));
+			addrDisplay.append($("<p style='margin: 0px;'></p>").text(pAddresses[addrIndex].line1));
+			if (pAddresses[addrIndex].line2 != "") {
+				addrDisplay.append($("<p style='margin: 0px;'></p>").text(pAddresses[addrIndex].line2));
+			}
+			if (pAddresses[addrIndex].line3 != "") {
+				addrDisplay.append($("<p style='margin: 0px;'></p>").text(pAddresses[addrIndex].line3));
+			}
+			addrDisplay.append($("<p style='margin: 0px;'></p>").text(pAddresses[addrIndex].city + ", " + pAddresses[addrIndex].stateCode + " " + pAddresses[addrIndex].postalCode));
+		}
+		// Directions
+		var directInfo = $("<p></p>").html(park.directionsInfo + " For more information, see <a style='color: black; text-decoration: underline;' href=" + park.directionsUrl + ">" + park.directionsUrl + ".</a></p>")
+		$('#directInfo').append(directInfo);
+		// Phone
+		var phoneList = park.contacts.phoneNumbers;
+		for (phIndex = 0; phIndex < phoneList.length; phIndex++) {
+			var headline = phoneList[phIndex].type;
+			if (phoneList[phIndex].description != "") {
+				headline += (", " + phoneList[phIndex].description);
+			}
+			$('#pDigits').append($("<h5></h5>").text(headline));
+			var numLine = phoneList[phIndex].phoneNumber;
+			if (phoneList[phIndex].extension != "") {
+				numLine += (", " + phoneList[phIndex].extension);
+			}
+			$('#pDigits').append($("<p style='margin: 0px;'></p>").text(numLine));
+		}
+		// Email
+		var emList = park.contacts.emailAddresses;
+		for (emIndex = 0; emIndex < emList.length; emIndex++) {
+			if (emList[emIndex].description != "") {
+				$('#pEmail').append($("<h5></h5>").text(emList[emIndex].description));
+			}
+			$('#pEmail').append($("<p style='margin: 0px;'></p>").text(emList[emIndex].emailAddress));
+		}
+
+		// SEE IF CAN LINK EMAIL, MAILTO:
+
+	});
+
+	return;
+}
+
+
+

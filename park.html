@@ -15,6 +15,7 @@
 	<!-- For loading results -->
 	<script type="text/javascript">
 		window.onload = function() {
+			loadAlertsBar();
 			loadParkInfo();
 		}
 	</script>
@@ -53,14 +54,14 @@
 				<div class="lbCol" style="width: 66%;">
 					<!-- img & description -->
 					<div class="row">
-						<img class="lbCol" style="width: 50%; height: contain;" id="parkImg">
-						<p class="lbCol" style="width: 50%;" id="parkDescr">${park.description}</p>
+						<img class="lbCol" style="width: 50%; height: contain; padding-left: 0px;" id="parkImg">
+						<p class="lbCol" style="width: 50%; margin: 0px;" id="parkDescr">${park.description}</p>
 					</div>
 
 					<!-- Cost & weather info -->
 					<h3 class="lbSectionHeader" id="cwHeader">Coming to ${park.fullName}</h3>
 					<div class="row">
-						<div class="lbCol" style="width: 50%;">
+						<div class="lbCol" style="width: 50%;" id="costDiv">
 							<h4>Cost</h4>
 							<!-- Will append cost info -->
 						</div>
@@ -75,11 +76,11 @@
 					<div class="row">
 						<div class="lbCol" style="width: 50%;">
 							<h4>Visitor Centers</h4>
-							<p>[VC info]</p>
+							<div id="vcDiv"></div>
 						</div>
 						<div class="lbCol" style="width: 50%;">
 							<h4>Campgrounds</h4>
-							<p>[CG Info]</p>
+							<div id="cgDiv"></div>
 						</div>
 					</div>
 
@@ -87,6 +88,7 @@
 					<div class="row">
 						<h3 class="lbSectionHeader">News</h3>
 						<!-- Will append news releases. -->
+						<div id="newsResults"></div>
 					</div>
 					
 					<!-- Education -->
@@ -94,21 +96,25 @@
 						<h3 class="lbSectionHeader">Education</h3>
 						<div style="margin-left: 15%;">
 							<h4>Lesson Plans</h4>
+							<div class="resHolder" id="lpResults" style="overflow: auto; flex-wrap: nowrap; flex-direction: row; justify-content: flex-start;"></div>
 							<h4>Articles</h4>
+							<div class="resHolder" id="arResults" style="overflow: auto; flex-wrap: nowrap; flex-direction: row; justify-content: flex-start;"></div>
 							<h4>People</h4>
+							<div class="resHolder" id="pplResults" style="overflow: auto; flex-wrap: nowrap; flex-direction: row; justify-content: flex-start;"></div>
 							<h4>Places</h4>
+							<div class="resHolder" id="plResults" style="overflow: auto; flex-wrap: nowrap; flex-direction: row; justify-content: flex-start;"></div>
 						</div>
 					</div>
 				</div>
 
 				<!-- Right Column -->
 				<div class="lbCol" style="width: 33%;">
-					<div id="parkAlerts">
-						<h3 class="lbSectionHeader">Alerts</h3>
+					<h3 class="lbSectionHeader" style="margin-top: 0px;">Alerts</h3>
+					<div id="alertsResults">
 						<!-- Will append alerts -->
 					</div>
-					<div id="parkEvents">
-						<h3 class="lbSectionHeader">Events</h3>
+					<h3 class="lbSectionHeader">Events</h3>
+					<div class="resHolder" id="eventResults" style="flex-wrap: nowrap; flex-direction: column; justify-content: flex-start;">
 						<!-- Will append list of events -->
 					</div>
 				</div>
@@ -126,7 +132,10 @@
 				</div>
 				<div class="lbCol" style="width: 33%;" id="phoneInfo">
 					<h4>Phone</h4>
+					<div id="pDigits"></div>
 					<!-- Will append phone numbers list -->
+					<h4>Email</h4>
+					<div id="pEmail"></div>
 				</div>
 				<div class="lbCol" style="width: 33%;" id="hoursInfo">
 					<h4>Hours</h4>
@@ -146,8 +155,7 @@
 					</td>
 					<td class="alertsScrolling">
 						<p>
-							<marquee>
-								Park in SF is closed.
+							<marquee id="alertsText">
 							</marquee>
 						</p>
 					</td>
