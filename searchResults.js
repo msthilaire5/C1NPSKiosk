@@ -33,26 +33,40 @@ function isolateQuery() {
 /* LOADING SCROLLING ALERTS BAR MESSAGES */
 function loadAlertsBar() {
 
-	var alertsURL = "https://developer.nps.gov/api/v1/alerts?limit=10&api_key=" + API_KEY ;
+	// List of meesages
+	var alerts = "";
 
-	$.getJSON(alertsURL, function(data) { // Make request to API
+	// Pull messages from storage if already there
+	if (sessionStorage.alMessages) {
+		alerts = sessionStorage.alMessages;
 		// div displaying results
 		var scrollDisplay = $("#alertsText");
+		scrollDisplay.text(alerts);
+	} else {
+		var alTxtList = []; // List of alerts
+		var alertsURL = "https://developer.nps.gov/api/v1/alerts?limit=10&api_key=" + API_KEY ;
 
-		// List of alerts
-		var alertList = data.data;
-		// List of messages.
-		var alMessages = ""
+		$.getJSON(alertsURL, function(data) { // Make request to API
+			
+			// List of alerts
+			var alertList = data.data;
 
-		// Populate with name header and state locat for each park.
-		for(aIndex = 0; aIndex < alertList.length; aIndex++) {
-			const alert = alertList[aIndex]; // Select-an-alert!
+			// Populate with name header and state locat for each park.
+			for(aIndex = 0; aIndex < alertList.length; aIndex++) {
+				var alert = alertList[aIndex]; // Select-an-alert!
+				var alertTxt = alert.category.toUpperCase() + ": " + alert.title + ".";
+				alTxtList.push(alertTxt);
+			}
 
-			alMessages += (alert.category.toUpperCase() + ": " + alert.title + ". \u0009");
-		}
+			alerts = alTxtList.join(" \u26FA ");
+			sessionStorage.setItem("alMessages", alerts);
 
-		scrollDisplay.text(alMessages);
-	});
+			// div displaying results
+			var scrollDisplay = $("#alertsText");
+			scrollDisplay.text(alerts);
+
+		});
+	}
 
 	return;
 }
