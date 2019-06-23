@@ -15,6 +15,7 @@
 	<!-- For loading results -->
 	<script type="text/javascript">
 		window.onload = function() {
+			loadAlertsBar();
 			dispNewsRes();
 		}
 	</script>
@@ -99,8 +100,7 @@
 					</td>
 					<td class="alertsScrolling">
 						<p>
-							<marquee>
-								Park in SF is closed.
+							<marquee id="alertsText">
 							</marquee>
 						</p>
 					</td>
