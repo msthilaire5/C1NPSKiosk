@@ -647,7 +647,7 @@ function loadParkInfo() {
 			if (emList[emIndex].description != "") {
 				$('#pEmail').append($("<h5></h5>").text(emList[emIndex].description));
 			}
-			$('#pEmail').append($("<p style='margin: 0px;'></p>").text(emList[emIndex].emailAddress));
+			$('#pEmail').append($("<p style='margin: 0px;'></p>").html("<a style='color: black;, text-decoration: none;' href='mailto:" + emList[emIndex].emailAddress+ "'>" + emList[emIndex].emailAddress + "</a></p>"));
 		}
 
 		// SEE IF CAN LINK EMAIL, MAILTO:
