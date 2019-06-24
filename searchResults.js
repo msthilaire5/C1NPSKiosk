@@ -649,8 +649,31 @@ function loadParkInfo() {
 			}
 			$('#pEmail').append($("<p style='margin: 0px;'></p>").html("<a style='color: black;, text-decoration: none;' href='mailto:" + emList[emIndex].emailAddress+ "'>" + emList[emIndex].emailAddress + "</a></p>"));
 		}
+		// Hours
+		var hoursList = park.operatingHours;
+		var hrsDiv = $('#hoursInfo');
+		for (hrIndex = 0; hrIndex < hoursList.length; hrIndex++) {
+			var hrs = hoursList[hrIndex];
+			hrsDiv.append($('<h5></h5>').text(hrs.name));
+			hrsDiv.append($('<p style="margin: 0px;"></p>').text(hrs.description));
+			hrsDiv.append($('<h6></h6>').text("Standard Hours"));
 
-		// SEE IF CAN LINK EMAIL, MAILTO:
+			// Each day
+			var dayHrs = $('<p style="margin: 0px;"></p>').html("Sunday: <span style='text-align: right;'>" + hrs.standardHours.sunday + "</span>");
+			hrsDiv.append(dayHrs);
+			var dayHrs = $('<p style="margin: 0px;"></p>').html("Monday: <span style='text-align: right;'>" + hrs.standardHours.monday + "</span>");
+			hrsDiv.append(dayHrs);
+			var dayHrs = $('<p style="margin: 0px;"></p>').html("Tuesday: <span style='text-align: right;'>" + hrs.standardHours.tuesday + "</span>");
+			hrsDiv.append(dayHrs);
+			var dayHrs = $('<p style="margin: 0px;"></p>').html("Wednesday: <span style='text-align: right;'>" + hrs.standardHours.wednesday + "</span>");
+			hrsDiv.append(dayHrs);
+			var dayHrs = $('<p style="margin: 0px;"></p>').html("Thursday: <span style='text-align: right;'>" + hrs.standardHours.thursday + "</span>");
+			hrsDiv.append(dayHrs);
+			var dayHrs = $('<p style="margin: 0px;"></p>').html("Friday: <span style='text-align: right;'>" + hrs.standardHours.friday + "</span>");
+			hrsDiv.append(dayHrs);
+			var dayHrs = $('<p style="margin: 0px;"></p>').html("Saturday: <span style='text-align: right;'>" + hrs.standardHours.saturday + "</span>");
+			hrsDiv.append(dayHrs);
+		}
 
 	});
 
