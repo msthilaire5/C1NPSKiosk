@@ -166,5 +166,82 @@
 
 	</div>
 
+	<!-- VISITOR CENTER LIGHTBOX -->
+	<div class="locLBBG" id="vcLB">
+		<div class="locLB">
+			<div class="locLBHeader">
+				<span class="lbClose" onclick="$('.locLBBG').hide();">&times;</span>
+				<h1><a style="color: black; text-decoration: none;" id="vcName" href=vclink>[VC NAME]</a></h1>
+			</div>
+
+			<hr />
+
+			<p id="vcDescr">[VC Description]</p>
+
+			<div class="locLBFooter row">
+				<h3 class="lbSectionHeader" style="margin-top: 0px;">Getting in Touch</h3>
+				<div class="lbCol" style="width: 33%;">
+					<h4>Addresses</h4>
+					<div id="vcAddressDiv"></div>
+					<h4>Directions</h4>
+					<p id="vcDirectInfo"></p>
+					<!-- Will fill in with .html() -->
+				</div>
+				<div class="lbCol" style="width: 33%;" id="vcPhoneInfo">
+					<h4>Phone</h4>
+					<div id="vcDigits"></div>
+					<!-- Will append phone numbers list -->
+					<h4>Email</h4>
+					<div id="vcEmail"></div>
+				</div>
+				<div class="lbCol" style="width: 33%;" id="vcHoursInfo">
+					<h4>Typical Hours</h4>
+					<p style="margin: 0px;">See visitor center website for exceptions.</p>
+					<!-- Will append hours list -->
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<!-- CAMPGROUND LIGHTBOX -->
+	<div class="locLBBG" id="cgLB">
+		<div class="locLB">
+			<div class="locLBHeader">
+				<span class="lbClose" onclick="$('.locLBBG').hide();">&times;</span>
+				<h1><a style="color: black; text-decoration: none;" href=cglink>[CG NAME]</a></h1>
+			</div>
+
+			<hr />
+
+			<p>[CG Description]</p>
+
+			<div class="locLBFooter row">
+				<h3 class="lbSectionHeader" style="margin-top: 0px;">Getting in Touch</h3>
+				<div class="lbCol" style="width: 33%;">
+					<h4>Addresses</h4>
+					<div id="cgAddressDiv"></div>
+					<h4>Directions</h4>
+					<p id="cgDirectInfo"></p>
+					<!-- Will fill in with .html() -->
+				</div>
+				<div class="lbCol" style="width: 33%;" id="cgPhoneInfo">
+					<h4>Phone</h4>
+					<div id="cgDigits"></div>
+					<!-- Will append phone numbers list -->
+					<h4>Email</h4>
+					<div id="cgEmail"></div>
+				</div>
+				<div class="lbCol" style="width: 33%;" id="cgHoursInfo">
+					<h4>Typical Hours</h4>
+					<p style="margin: 0px;">See campgrounds website for exceptions.</p>
+					<!-- Will append hours list -->
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+
 </body>
 </html>

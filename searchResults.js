@@ -121,85 +121,6 @@ function dispLocRes() {
 	return;
 }
 
-// Visitor Centers.
-function dispVCRes(pTitle, pCode, query) {
-
-	const vcURL = "https://developer.nps.gov/api/v1/visitorcenters?api_key=" + API_KEY + "&parkCode=" + pCode;
-
-	$.getJSON(vcURL, function(data) {
-		// div displaying results
-		var vcDisplay = $("#vcResults");
-		// Remove "Loading results..." filler.
-		// vcDisplay.empty();
-
-		// List of all parks
-		var vcList = data.data;
-
-		// Populate with name header and state locat for each park.
-		for(vcIndex = 0; vcIndex < vcList.length; vcIndex++) {
-			const vc = vcList[vcIndex]; // Select-a-VC!
-			var resBox = $("<div class='resBox'></div>"); // Box it!
-
-			/* 
-			// URL for filling template.
-			const pCode = park.parkCode;
-			const templateUrl = "park.html?parkCode=" + pCode;
-			*/
-
-			// const pLink = $("<a class='resLink' href=" + templateUrl + "></a>").text(park.fullName);
-			const vcTitle = $("<h3></h3>").text(vc.name);
-			const vcPark = $("<p></p>").text(pTitle);
-
-
-			resBox.append(vcTitle);
-			resBox.append(vcPark);
-			vcDisplay.append(resBox);
-		}
-	});
-
-	return;
-}
-
-// Campgrounds.
-function dispCGRes(pTitle, pCode, query) {
-
-	const cgURL = "https://developer.nps.gov/api/v1/campgrounds?api_key=" + API_KEY + "&parkCode=" + pCode;
-
-	$.getJSON(cgURL, function(data) {
-		// div displaying results
-		var cgDisplay = $("#cgResults");
-		// Remove "Loading results..." filler.
-		// cgDisplay.empty();
-
-		// List of all parks
-		var cgList = data.data;
-
-		// Populate with name header and state locat for each park.
-		for(cgIndex = 0; cgIndex < cgList.length; cgIndex++) {
-			const cg = cgList[cgIndex]; // Select-a-VC!
-			var resBox = $("<div class='resBox'></div>"); // Box it!
-
-			/* 
-			// URL for filling template.
-			const pCode = park.parkCode;
-			const templateUrl = "park.html?parkCode=" + pCode;
-			*/
-
-			// const pLink = $("<a class='resLink' href=" + templateUrl + "></a>").text(park.fullName);
-			const cgTitle = $("<h3></h3>").text(cg.name);
-			const cgPark = $("<p></p>").text(pTitle);
-
-
-			resBox.append(cgTitle);
-			resBox.append(cgPark);
-			cgDisplay.append(resBox);
-		}
-	});
-
-	return;
-}
-
-
 
 /* SHOWING EVENT RESULTS */
 function dispEventRes(pCode) {
@@ -593,7 +514,9 @@ function loadParkInfo() {
 		// Weather info
 		$('#weatherPara').text(park.weatherInfo);
 
-		// [VC & CG INFO!!!!!!!!]
+		// Visitor Centers
+		dispVCRes(pCode);
+		dispCGRes(pCode);
 
 		// News releases
 		dispNRRes("", pCode);
@@ -675,6 +598,141 @@ function loadParkInfo() {
 			hrsDiv.append(dayHrs);
 		}
 
+	});
+
+	return;
+}
+
+// Visitor Centers.
+function dispVCRes(pCode) {
+
+	const vcURL = "https://developer.nps.gov/api/v1/visitorcenters?fields=contacts,addresses,operatingHours&api_key=" + API_KEY + "&parkCode=" + pCode;
+
+	$.getJSON(vcURL, function(data) {
+		// div displaying results
+		var vcDisplay = $("#vcDiv");
+
+		// List of all visitor centers
+		var vcList = data.data;
+		var vcUL = $('<ul></ul>');
+
+		// Populate with name header and state locat for each park.
+		for(vcIndex = 0; vcIndex < vcList.length; vcIndex++) {
+			const vc = vcList[vcIndex]; // Select-a-VC!
+			const vcJSON = JSON.stringify(vc);
+			var vcLi = $("<li style='cursor: pointer; text-decoration: underline; onclick='showVCLB(\" " + vcJSON + "\")'></li>").text(vc.name);
+
+			vcUL.append(vcLi);
+		}
+
+		vcDisplay.append(vcUL);
+	});
+
+	return;
+}
+
+// Showing VC Lightbox!!
+function showVCLB(vcStr) {
+
+	const vc = JSON.parse(vcStr);
+	$('#vcLB').show();
+
+	var vcTitle = $('#vcName');
+	vcTitle.text(vc.name);
+	vcTitle.attr("href", vc.url);
+
+	$('#vcDescr').text(vc.description);
+
+	// Contact info! "Getting in Touch"
+	// Addresses
+	var addrDisplay = $('#vcAddressDiv');
+	const vcAddresses = vc.addresses;
+	for (addrIndex = 0; addrIndex < vcAddresses.length; addrIndex++) {
+		addrDisplay.append($("<h5></h5>").text(vcAddresses[addrIndex].type));
+		addrDisplay.append($("<p style='margin: 0px;'></p>").text(vcAddresses[addrIndex].line1));
+		if (vcAddresses[addrIndex].line2 != "") {
+			addrDisplay.append($("<p style='margin: 0px;'></p>").text(vcAddresses[addrIndex].line2));
+		}
+		if (vcAddresses[addrIndex].line3 != "") {
+			addrDisplay.append($("<p style='margin: 0px;'></p>").text(vcAddresses[addrIndex].line3));
+		}
+		addrDisplay.append($("<p style='margin: 0px;'></p>").text(vcAddresses[addrIndex].city + ", " + vcAddresses[addrIndex].stateCode + " " + vcAddresses[addrIndex].postalCode));
+	}
+	// Directions
+	var directInfo = $("<p></p>").html(vc.directionsInfo + " For more information, see <a style='color: black; text-decoration: underline;' href=" + vc.directionsUrl + ">" + vc.directionsUrl + ".</a></p>")
+	$('#directInfo').append(directInfo);
+	// Phone
+	var phoneList = vc.contacts.phoneNumbers;
+	for (phIndex = 0; phIndex < phoneList.length; phIndex++) {
+		var headline = phoneList[phIndex].type;
+		if (phoneList[phIndex].description != "") {
+			headline += (", " + phoneList[phIndex].description);
+		}
+		$('#vcDigits').append($("<h5></h5>").text(headline));
+		var numLine = phoneList[phIndex].phoneNumber;
+		if (phoneList[phIndex].extension != "") {
+			numLine += (", " + phoneList[phIndex].extension);
+		}
+		$('#vcDigits').append($("<p style='margin: 0px;'></p>").text(numLine));
+	}
+	// Email
+	var emList = vc.contacts.emailAddresses;
+	for (emIndex = 0; emIndex < emList.length; emIndex++) {
+		if (emList[emIndex].description != "") {
+			$('#vcEmail').append($("<h5></h5>").text(emList[emIndex].description));
+		}
+		$('#vcEmail').append($("<p style='margin: 0px;'></p>").html("<a style='color: black;, text-decoration: none;' href='mailto:" + emList[emIndex].emailAddress+ "'>" + emList[emIndex].emailAddress + "</a></p>"));
+	}
+	// Hours
+	var hoursList = vc.operatingHours;
+	var hrsDiv = $('#hoursInfo');
+	for (hrIndex = 0; hrIndex < hoursList.length; hrIndex++) {
+		var hrs = hoursList[hrIndex];
+		hrsDiv.append($('<h5></h5>').text(hrs.name));
+		hrsDiv.append($('<p style="margin: 0px;"></p>').text(hrs.description));
+		hrsDiv.append($('<h6></h6>').text("Standard Hours"));
+
+		// Each day
+		var dayHrs = $('<p style="margin: 0px;"></p>').html("Sunday: <span style='text-align: right;'>" + hrs.standardHours.sunday + "</span>");
+		hrsDiv.append(dayHrs);
+		var dayHrs = $('<p style="margin: 0px;"></p>').html("Monday: <span style='text-align: right;'>" + hrs.standardHours.monday + "</span>");
+		hrsDiv.append(dayHrs);
+		var dayHrs = $('<p style="margin: 0px;"></p>').html("Tuesday: <span style='text-align: right;'>" + hrs.standardHours.tuesday + "</span>");
+		hrsDiv.append(dayHrs);
+		var dayHrs = $('<p style="margin: 0px;"></p>').html("Wednesday: <span style='text-align: right;'>" + hrs.standardHours.wednesday + "</span>");
+		hrsDiv.append(dayHrs);
+		var dayHrs = $('<p style="margin: 0px;"></p>').html("Thursday: <span style='text-align: right;'>" + hrs.standardHours.thursday + "</span>");
+		hrsDiv.append(dayHrs);
+		var dayHrs = $('<p style="margin: 0px;"></p>').html("Friday: <span style='text-align: right;'>" + hrs.standardHours.friday + "</span>");
+		hrsDiv.append(dayHrs);
+		var dayHrs = $('<p style="margin: 0px;"></p>').html("Saturday: <span style='text-align: right;'>" + hrs.standardHours.saturday + "</span>");
+		hrsDiv.append(dayHrs);
+	}
+
+}
+
+// Campgrounds
+function dispCGRes(pCode) {
+
+	const cgURL = "https://developer.nps.gov/api/v1/campgrounds?api_key=" + API_KEY + "&parkCode=" + pCode;
+
+	$.getJSON(cgURL, function(data) {
+		// div displaying results
+		var cgDisplay = $("#cgDiv");
+
+		// List of all visitor centers
+		var cgList = data.data;
+		var cgUL = $('<ul></ul>');
+
+		// Populate with name header and state locat for each park.
+		for(cgIndex = 0; cgIndex < cgList.length; cgIndex++) {
+			const cg = cgList[cgIndex]; // Select-a-CG!
+			var cgLi = $("<li style='cursor: pointer; text-decoration: underline;' onclick='showCGLB()'></li>").text(cg.name);
+
+			cgUL.append(cgLi);
+		}
+
+		cgDisplay.append(cgUL);
 	});
 
 	return;

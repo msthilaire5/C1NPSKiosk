@@ -314,7 +314,7 @@ body, html {
 /* PARK LIGHTBOX TEMPLATE */
 /* Gray out background */
 .locLBBG {
-	/*display: none; */
+	display: none;
 	background-color: rgba(0,0,0,0.5);
 	color: black;
 
