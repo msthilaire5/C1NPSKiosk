@@ -621,7 +621,6 @@ function dispVCRes(pCode) {
 			const vc = vcList[vcIndex]; // Select-a-VC!
 			const vcJSON = JSON.stringify(vc);
 			var vcLi = $('<li style="cursor: pointer; text-decoration: underline;"></li>').text(vc.name);
-			vcLi.click(showVCLB(vcJSON));
 
 			vcUL.append(vcLi);
 		}
