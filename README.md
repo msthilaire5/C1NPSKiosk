@@ -2,7 +2,7 @@
 This repository is my submission for Capital One's Mind Sumo Challenge, as part of my application for the August Software Engineering Summit.
 
 ## Instructions
-The first time you visit the kiosk, your browser should ask you to enter your API Key. Copy and paste the key given to you by the NPS and press Enter. Then, you can proceed to browse the app.
+The link to the web application is (http://msthilaire5.github.io/C1NPSKiosk). The first time you visit the kiosk, your browser should ask you to enter your NPS API Key, which you can obtain [here](https://www.nps.gov/subjects/developer/get-started.htm). Copy and paste the key given to you by the NPS and press Enter. Then, you can proceed to browse the app.
 
 ## Features Left to Implement
 * Visitor Center and campgrounds detail lightboxes on park pages
